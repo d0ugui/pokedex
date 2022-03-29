@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { api } from './api';
 
-export async function getPokemons() {
+export async function getPokemons(limit, offset) {
   try {
-    const res = await api.get('/');
+    const res = await api.get(`?limit=${limit}&offset=${offset}`);
     return res;
   } catch (error) {
     console.log('Error:', error);

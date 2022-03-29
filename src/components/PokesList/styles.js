@@ -36,3 +36,10 @@ export const Content = styled.div`
     grid-template-columns: repeat(1, 1fr);
   }
 `;
+
+export const Paginate = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;

@@ -23,5 +23,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'react/prop-types': 'off',
     'consistent-return': 'off',
+    'no-param-reassign': 'off',
+    'react/button-has-type': 'off',
   },
 };

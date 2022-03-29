@@ -1,4 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { settingPokemons } from '../../features/pokemons';
+import { settingTotalPages } from '../../features/pagination';
 import { getPokemons, getPokemonInfos } from '../../services/pokemons';
 
 import { Header } from '../../components/Header';
@@ -8,24 +11,27 @@ import { Search } from '../../components/Search';
 import { Container } from './styles';
 
 function Home() {
-  const [pokemons, setPokemons] = useState([]);
+  const dispatch = useDispatch();
+  const pokemons = useSelector((state) => state.pokemons.pokemons);
+  const perPage = useSelector((state) => state.pagination.perPage);
+  const currentPage = useSelector((state) => state.pagination.currentPage);
 
   useEffect(async () => {
-    const { data } = await getPokemons();
+    const { data } = await getPokemons(perPage, perPage * currentPage);
     const promises = await data.results.map(async (pokemon) => (
       getPokemonInfos(pokemon.url)
     ));
 
     const res = await Promise.all(promises);
 
-    setPokemons(res);
-  }, []);
+    dispatch(settingPokemons({ pokemons: res }));
+    dispatch(settingTotalPages({ total: data.count }));
+  }, [currentPage]);
 
   return (
     <Container>
       <Header />
       <Search />
-      {console.log(pokemons)}
       <PokesList pokemons={pokemons} />
     </Container>
   );
