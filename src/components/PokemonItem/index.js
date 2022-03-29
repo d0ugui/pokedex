@@ -1,15 +1,17 @@
 import { Container } from './styles';
-import pokeTest from '../../assets/teste.svg';
-import fireTest from '../../assets/fire.svg';
+// import fireTest from '../../assets/fire.svg';
 
-export function PokemonItem() {
+export function PokemonItem({ pokemon }) {
   return (
     <Container>
-      <img src={pokeTest} alt="Pokemon Name" />
-      <small>#004</small>
+      <img src={pokemon.sprites.other.dream_world.front_default} alt="Pokemon Name" />
+      <small>
+        #
+        {pokemon.id}
+      </small>
       <div>
-        <strong>Charmander</strong>
-        <img src={fireTest} alt="Fire" />
+        <strong>{pokemon.name}</strong>
+        <img src={`${pokemon.types[0].type.name}.svg`} alt={pokemon.types[0].type.name} />
       </div>
     </Container>
   );

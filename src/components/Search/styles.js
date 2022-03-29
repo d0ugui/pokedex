@@ -33,4 +33,17 @@ export const Content = styled.div`
       outline: none;
     }
   }
+
+  @media (max-width: 1024px) {
+    width: 90%;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+
+    h1 {
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+  }
 `;

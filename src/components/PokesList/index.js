@@ -2,7 +2,7 @@ import { Container, Content } from './styles';
 import pokeSvg from '../../assets/icon-poke-red.svg';
 import { PokemonItem } from '../PokemonItem';
 
-export function PokesList() {
+export function PokesList({ pokemons }) {
   return (
     <Container>
       <div>
@@ -10,10 +10,9 @@ export function PokesList() {
         <strong>1120 Pokémons</strong>
       </div>
       <Content>
-        <PokemonItem />
-        <PokemonItem />
-        <PokemonItem />
-        <PokemonItem />
+        {pokemons?.map((pokemon) => (
+          <PokemonItem key={pokemon.name} pokemon={pokemon} />
+        ))}
       </Content>
     </Container>
   );

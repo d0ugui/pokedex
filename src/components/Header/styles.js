@@ -25,6 +25,7 @@ export const Content = styled.div`
     text-decoration: none;
     color: #fff;
     transition: 0.2s all ease;
+    text-align: center;
 
       &:hover {
         color: #E0E0E0;
@@ -34,5 +35,10 @@ export const Content = styled.div`
     svg {
       color: #BF0001;
     }
+  }
+
+  @media (max-width: 1024px) {
+    width: 90%;
+    margin: 0 2rem;
   }
 `;
