@@ -8,6 +8,7 @@ import { Container, Content, Paginate } from './styles';
 
 export function PokesList({ pokemons }) {
   const totalPokemons = useSelector((state) => state.pagination.totalPages);
+  const searchPokemons = useSelector((state) => state.pokemons.searchPokemons);
 
   return (
     <Container>
@@ -23,9 +24,14 @@ export function PokesList({ pokemons }) {
         </Paginate>
       </div>
       <Content>
-        {pokemons?.map((pokemon) => (
-          <PokemonItem key={pokemon.name} pokemon={pokemon} />
-        ))}
+        {searchPokemons ? (
+          <PokemonItem key={searchPokemons.name} pokemon={searchPokemons} />
+        ) : (
+          pokemons?.map((pokemon) => (
+            <PokemonItem key={pokemon.name} pokemon={pokemon} />
+          ))
+        )}
+
       </Content>
     </Container>
   );

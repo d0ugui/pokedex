@@ -21,10 +21,13 @@ export const Container = styled.div`
   }
 
   button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border: none;
+    background: transparent;
+
     svg {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
       cursor: pointer;
       color: ${({ color }) => (color || '#F18E7E')};
     }

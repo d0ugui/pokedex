@@ -32,6 +32,12 @@ export const Content = styled.div`
       border: none;
       outline: none;
     }
+
+    button {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+    }
   }
 
   @media (max-width: 1024px) {
