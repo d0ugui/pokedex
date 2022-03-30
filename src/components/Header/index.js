@@ -9,7 +9,7 @@ export function Header() {
         <img src={logoSvg} alt="Pokemon Logo" />
         <div>
           <a href="ww">Meus favoritos</a>
-          <AiFillHeart />
+          <AiFillHeart size={20} />
         </div>
       </Content>
     </Container>

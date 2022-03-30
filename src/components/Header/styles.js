@@ -33,7 +33,7 @@ export const Content = styled.div`
     }
 
     svg {
-      color: #BF0001;
+      color: #E94F37;
     }
   }
 

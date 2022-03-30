@@ -1,7 +1,14 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { AiFillHeart } from 'react-icons/ai';
+import { addFavPokemon, removeFavPokemon } from '../../features/pokemons';
+
 import { Container } from './styles';
-// import fireTest from '../../assets/fire.svg';
 
 export function PokemonItem({ pokemon }) {
+  const dispatch = useDispatch();
+  const favoritePokemons = useSelector((state) => state.pokemons.favoritePokemons);
+  const isSelected = favoritePokemons.includes(pokemon.name);
+
   return (
     <Container>
       <img src={pokemon.sprites.other.dream_world.front_default} alt="Pokemon Name" />
@@ -9,6 +16,26 @@ export function PokemonItem({ pokemon }) {
         #
         {pokemon.id}
       </small>
+
+      {isSelected ? (
+        <button
+          onClick={() => dispatch(removeFavPokemon({ fav: pokemon }))}
+        >
+          <AiFillHeart
+            size={20}
+            color="#E94F37"
+          />
+        </button>
+      ) : (
+        <button
+          onClick={() => dispatch(addFavPokemon({ fav: pokemon }))}
+        >
+          <AiFillHeart
+            size={20}
+          />
+        </button>
+      )}
+
       <div>
         <strong>{pokemon.name}</strong>
         <img src={`${pokemon.types[0].type.name}.svg`} alt={pokemon.types[0].type.name} />

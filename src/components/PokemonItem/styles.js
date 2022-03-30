@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {} from 'styled-components';
 
 export const Container = styled.div`
   background: #fff;
@@ -18,6 +18,16 @@ export const Container = styled.div`
     position: absolute;
     top: 1rem;
     left: 1rem;
+  }
+
+  button {
+    svg {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      cursor: pointer;
+      color: ${({ color }) => (color || '#F18E7E')};
+    }
   }
 
   img:nth-child(1) {

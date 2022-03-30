@@ -25,5 +25,7 @@ module.exports = {
     'consistent-return': 'off',
     'no-param-reassign': 'off',
     'react/button-has-type': 'off',
+    'no-unused-vars': 'off',
+    eqeqeq: 'off',
   },
 };

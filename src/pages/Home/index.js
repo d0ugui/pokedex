@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { settingPokemons } from '../../features/pokemons';
+import { settingPokemons, storagePokemons } from '../../features/pokemons';
 import { settingTotalPages } from '../../features/pagination';
 import { getPokemons, getPokemonInfos } from '../../services/pokemons';
 
@@ -15,6 +15,14 @@ function Home() {
   const pokemons = useSelector((state) => state.pokemons.pokemons);
   const perPage = useSelector((state) => state.pagination.perPage);
   const currentPage = useSelector((state) => state.pagination.currentPage);
+
+  useLayoutEffect(() => {
+    const favoritePokesStorage = JSON.parse(window.localStorage.getItem('favPokes'));
+
+    if (favoritePokesStorage) {
+      dispatch(storagePokemons({ storageFavs: favoritePokesStorage }));
+    }
+  }, []);
 
   useEffect(async () => {
     const { data } = await getPokemons(perPage, perPage * currentPage);
