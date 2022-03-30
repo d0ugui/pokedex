@@ -7,12 +7,13 @@ export function Pagination() {
   const dispatch = useDispatch();
   const currentPage = useSelector((state) => state.pagination.currentPage);
   const totalPages = useSelector((state) => state.pagination.totalPages);
+  const favoriteMode = useSelector((state) => state.pokemons.favoriteMode);
 
   return (
     <Container>
       <button
         onClick={() => dispatch(prevPage())}
-        disabled={currentPage < 1}
+        disabled={currentPage < 1 || favoriteMode}
       >
         &lt;
       </button>
@@ -21,11 +22,16 @@ export function Pagination() {
         {' '}
         de
         {' '}
-        {totalPages + 1}
+        {favoriteMode ? (
+          1
+        ) : (
+          totalPages + 1
+        )}
+
       </strong>
       <button
         onClick={() => dispatch(nextPage())}
-        disabled={currentPage + 1 === totalPages}
+        disabled={currentPage + 1 === totalPages || favoriteMode}
       >
         &gt;
 

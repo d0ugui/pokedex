@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { settingPokemons, storagePokemons } from '../../features/pokemons';
 import { settingTotalPages } from '../../features/pagination';
-import { getPokemons, getPokemonInfos } from '../../services/pokemons';
+import { getPokemons, getUniquePokemon } from '../../services/pokemons';
 
 import { Header } from '../../components/Header';
 import { PokesList } from '../../components/PokesList';
@@ -25,15 +25,10 @@ function Home() {
   }, []);
 
   useEffect(async () => {
-    const { data } = await getPokemons(perPage, perPage * currentPage);
-    const promises = await data.results.map(async (pokemon) => (
-      getPokemonInfos(pokemon.url)
-    ));
-
-    const res = await Promise.all(promises);
+    const { res, count } = await getPokemons(perPage, perPage * currentPage);
 
     dispatch(settingPokemons({ pokemons: res }));
-    dispatch(settingTotalPages({ total: data.count }));
+    dispatch(settingTotalPages({ total: count }));
   }, [currentPage]);
 
   return (

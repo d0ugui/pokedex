@@ -21,16 +21,21 @@ export const Content = styled.div`
     justify-content: center;
     gap: 5px;
 
-    a {
+   button {
+    border: none;
+    background: transparent;
     text-decoration: none;
     color: #fff;
     transition: 0.2s all ease;
     text-align: center;
 
-      &:hover {
-        color: #E0E0E0;
-      }
+    cursor: pointer;
+
+    &:hover {
+      color: #E0E0E0;
     }
+
+   }
 
     svg {
       color: #E94F37;

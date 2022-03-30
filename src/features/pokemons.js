@@ -7,6 +7,7 @@ export const pokemonsSlice = createSlice({
     totalPokemons: 0,
     favoritePokemons: [],
     searchPokemons: null,
+    favoriteMode: false,
   },
   reducers: {
     settingPokemons: (state, action) => {
@@ -14,6 +15,9 @@ export const pokemonsSlice = createSlice({
     },
     searchPokemons: (state, action) => {
       state.searchPokemons = action.payload.res;
+    },
+    setFavorites: (state) => {
+      state.favoriteMode = !state.favoriteMode;
     },
     storagePokemons: (state, action) => {
       state.favoritePokemons = action.payload.storageFavs;
@@ -45,6 +49,6 @@ export const pokemonsSlice = createSlice({
 });
 
 export const {
-  settingPokemons, addFavPokemon, removeFavPokemon, storagePokemons, searchPokemons,
+  settingPokemons, addFavPokemon, removeFavPokemon, storagePokemons, searchPokemons, setFavorites,
 } = pokemonsSlice.actions;
 export default pokemonsSlice.reducer;

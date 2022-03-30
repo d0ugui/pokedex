@@ -9,6 +9,8 @@ import { Container, Content, Paginate } from './styles';
 export function PokesList({ pokemons }) {
   const totalPokemons = useSelector((state) => state.pagination.totalPages);
   const searchPokemons = useSelector((state) => state.pokemons.searchPokemons);
+  const favoriteMode = useSelector((state) => state.pokemons.favoriteMode);
+  const favoritePokemons = useSelector((state) => state.pokemons.favoritePokemons);
 
   return (
     <Container>
@@ -16,7 +18,11 @@ export function PokesList({ pokemons }) {
         <img src={pokeSvg} alt="Pokebola Icon" />
         <Paginate>
           <strong>
-            {totalPokemons * 12 - 2}
+            {favoriteMode ? (
+              favoritePokemons.length
+            ) : (
+              totalPokemons * 12 - 2
+            )}
             {' '}
             Pokémons
           </strong>
@@ -31,7 +37,6 @@ export function PokesList({ pokemons }) {
             <PokemonItem key={pokemon.name} pokemon={pokemon} />
           ))
         )}
-
       </Content>
     </Container>
   );
