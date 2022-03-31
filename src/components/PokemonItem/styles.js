@@ -18,6 +18,7 @@ export const Container = styled.div`
     position: absolute;
     top: 1rem;
     left: 1rem;
+    font-weight: 600;
   }
 
   button {

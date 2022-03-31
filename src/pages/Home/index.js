@@ -9,11 +9,13 @@ import { PokesList } from '../../components/PokesList';
 import { Search } from '../../components/Search';
 
 import { Container } from './styles';
+import { Modal } from '../../components/Modal';
 
 function Home() {
   const dispatch = useDispatch();
   const perPage = useSelector((state) => state.pagination.perPage);
   const currentPage = useSelector((state) => state.pagination.currentPage);
+  const selectedPokemon = useSelector((state) => state.pokemons.selectedPokemon);
 
   useLayoutEffect(() => {
     const favoritePokesStorage = JSON.parse(window.localStorage.getItem('favPokes'));
@@ -35,6 +37,7 @@ function Home() {
       <Header />
       <Search />
       <PokesList />
+      {selectedPokemon && <Modal />}
     </Container>
   );
 }

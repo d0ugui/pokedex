@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { AiFillHeart } from 'react-icons/ai';
-import { addFavPokemon, removeFavPokemon } from '../../features/pokemons';
+import { addFavPokemon, removeFavPokemon, selectedPokemon } from '../../features/pokemons';
 
 import { Container } from './styles';
 
@@ -9,9 +9,13 @@ export function PokemonItem({ pokemon }) {
   const favoritePokemons = useSelector((state) => state.pokemons.favoritePokemons);
   const isSelected = favoritePokemons.includes(pokemon?.name);
 
+  function handleSelectedPokemon(selected) {
+    dispatch(selectedPokemon({ pokemon: selected }));
+  }
+
   return (
-    <Container>
-      <img src={pokemon?.sprites.other.dream_world.front_default} alt="Pokemon Name" />
+    <Container onClick={() => handleSelectedPokemon(pokemon)}>
+      <img src={pokemon?.sprites.other.dream_world.front_default} alt={pokemon.name} />
       <small>
         #
         {pokemon?.id}
