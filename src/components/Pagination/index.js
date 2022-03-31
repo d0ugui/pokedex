@@ -13,13 +13,17 @@ export function Pagination() {
     <Container>
       <button
         onClick={() => dispatch(prevPage())}
-        disabled={currentPage < 1 || favoriteMode}
+        disabled={currentPage < 1 || favoriteMode || totalPages <= 1}
         aria-label="previous page"
       >
         &lt;
       </button>
       <strong>
-        {currentPage + 1}
+        {favoriteMode ? (
+          1
+        ) : (
+          currentPage + 1
+        )}
         {' '}
         de
         {' '}
@@ -32,7 +36,7 @@ export function Pagination() {
       </strong>
       <button
         onClick={() => dispatch(nextPage())}
-        disabled={currentPage + 1 === totalPages || favoriteMode}
+        disabled={currentPage + 1 === totalPages || favoriteMode || totalPages <= 1}
         aria-label="next page"
       >
         &gt;

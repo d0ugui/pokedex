@@ -4,7 +4,6 @@ export const pokemonsSlice = createSlice({
   name: 'pokemons',
   initialState: {
     pokemons: [],
-    totalPokemons: 0,
     favoritePokemons: [],
     favoriteMode: false,
   },
@@ -45,6 +44,6 @@ export const pokemonsSlice = createSlice({
 });
 
 export const {
-  settingPokemons, addFavPokemon, removeFavPokemon, storagePokemons, setFavorites,
+  settingPokemons, setFavorites, addFavPokemon, removeFavPokemon, storagePokemons,
 } = pokemonsSlice.actions;
 export default pokemonsSlice.reducer;

@@ -15,7 +15,7 @@ export const Content = styled.div`
 
   margin: 50px auto;
 
-  & > div {
+  & > form {
     background-color: #fff;
     padding: 15px 25px;
     border-radius: 12.2rem;
