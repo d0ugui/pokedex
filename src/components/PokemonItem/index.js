@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AiFillHeart } from 'react-icons/ai';
 import { addFavPokemon, removeFavPokemon, selectedPokemon } from '../../features/pokemons';
 
-import { Container } from './styles';
+import { Container, PokemonInfos } from './styles';
 
 export function PokemonItem({ pokemon }) {
   const dispatch = useDispatch();
@@ -14,8 +14,12 @@ export function PokemonItem({ pokemon }) {
   }
 
   return (
-    <Container onClick={() => handleSelectedPokemon(pokemon)}>
-      <img src={pokemon?.sprites.other.dream_world.front_default} alt={pokemon.name} />
+    <Container
+      onClick={() => handleSelectedPokemon(pokemon)}
+      color={pokemon?.types[0].type.name}
+      isSelected={isSelected}
+    >
+      <img src={pokemon?.sprites.other.dream_world.front_default} alt={pokemon?.name} />
       <small>
         #
         {pokemon?.id}
@@ -28,7 +32,7 @@ export function PokemonItem({ pokemon }) {
         >
           <AiFillHeart
             size={20}
-            color="#E94F37"
+            colorIcon="#E94F37"
           />
         </button>
       ) : (
@@ -42,10 +46,14 @@ export function PokemonItem({ pokemon }) {
         </button>
       )}
 
-      <div>
+      <PokemonInfos>
         <strong>{pokemon?.name}</strong>
-        {pokemon?.types && <img src={`${pokemon?.types[0].type.name}.svg`} alt={pokemon?.types[0].type.name} />}
-      </div>
+        <img
+          src={`${pokemon?.types[0].type.name}.svg`}
+          alt={pokemon?.types[0].type.name}
+        />
+      </PokemonInfos>
+
     </Container>
   );
 }

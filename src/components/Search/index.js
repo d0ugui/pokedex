@@ -19,12 +19,11 @@ export function Search() {
     if (!search) {
       const { res } = await getPokemons(perPage, perPage * currentPage);
       dispatch(settingPokemons({ pokemons: res }));
-      dispatch(settingTotalPages({ total: res.length }));
+      return;
     }
 
     const res = Array(await getUniquePokemon(search));
     dispatch(settingPokemons({ pokemons: res }));
-    dispatch(settingTotalPages({ total: res.length }));
   }
 
   return (

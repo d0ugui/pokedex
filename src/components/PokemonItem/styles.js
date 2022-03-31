@@ -1,4 +1,4 @@
-import styled, {} from 'styled-components';
+import styled from 'styled-components';
 
 export const Container = styled.div`
   background: #fff;
@@ -13,6 +13,8 @@ export const Container = styled.div`
   border-radius: 0.8rem;
   transition: 0.3s all ease;
   margin-bottom: 4rem;
+
+  background-color: ${({ color }) => (color ? `var(--${color})` : '#fff')};
 
   small {
     position: absolute;
@@ -30,29 +32,34 @@ export const Container = styled.div`
 
     svg {
       cursor: pointer;
-      color: ${({ color }) => (color || '#F18E7E')};
+      color: ${({ isSelected }) => (isSelected ? '#E94F37' : '#F18E7E')};
     }
   }
 
-  img:nth-child(1) {
+  & > img {
     width: 15rem;
     height: 20rem;
   }
 
-  & > div {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    strong {
-      text-transform: capitalize;
-    }
-
-  }
 
   &:hover, &:focus {
     transform: scale(1.03);
     box-shadow: 0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.1);
+  }
+`;
+
+export const PokemonInfos = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  strong {
+    text-transform: capitalize;
+  }
+
+  img {
+    width: 2rem;
+    height: 2rem;
   }
 `;
