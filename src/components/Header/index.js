@@ -30,7 +30,7 @@ export function Header() {
       <Content>
         <img src={logoSvg} alt="Pokemon Logo" />
         <div>
-          <button onClick={handleFavorites}>
+          <button onClick={handleFavorites} aria-label="meus favoritos">
             Meus favoritos
           </button>
           <AiFillHeart size={20} />

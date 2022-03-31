@@ -14,6 +14,7 @@ export function Pagination() {
       <button
         onClick={() => dispatch(prevPage())}
         disabled={currentPage < 1 || favoriteMode}
+        aria-label="previous page"
       >
         &lt;
       </button>
@@ -32,6 +33,7 @@ export function Pagination() {
       <button
         onClick={() => dispatch(nextPage())}
         disabled={currentPage + 1 === totalPages || favoriteMode}
+        aria-label="next page"
       >
         &gt;
 

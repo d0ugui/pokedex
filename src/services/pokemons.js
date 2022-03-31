@@ -5,9 +5,7 @@ export async function getUniquePokemon(pokemon) {
     const { data } = await api.get(`/${pokemon}`);
     return data;
   } catch (error) {
-    if (error.response.data === 'Not Found') {
-      alert('O pokémon não existe!');
-    }
+    console.log(error.response.data);
   }
 }
 
@@ -15,6 +13,7 @@ export async function getPokemons(limit, offset) {
   try {
     const { data } = await api.get(`?limit=${limit}&offset=${offset}`);
     const { count } = data;
+
     const promises = await data.results.map(async (pokemon) => (
       getUniquePokemon(pokemon.name)
     ));

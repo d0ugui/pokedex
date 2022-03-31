@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { settingPokemons, storagePokemons } from '../../features/pokemons';
 import { settingTotalPages } from '../../features/pagination';
-import { getPokemons, getUniquePokemon } from '../../services/pokemons';
+import { getPokemons } from '../../services/pokemons';
 
 import { Header } from '../../components/Header';
 import { PokesList } from '../../components/PokesList';
@@ -12,7 +12,6 @@ import { Container } from './styles';
 
 function Home() {
   const dispatch = useDispatch();
-  const pokemons = useSelector((state) => state.pokemons.pokemons);
   const perPage = useSelector((state) => state.pagination.perPage);
   const currentPage = useSelector((state) => state.pagination.currentPage);
 
@@ -35,7 +34,7 @@ function Home() {
     <Container>
       <Header />
       <Search />
-      <PokesList pokemons={pokemons} />
+      <PokesList />
     </Container>
   );
 }

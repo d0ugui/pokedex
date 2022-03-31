@@ -4,6 +4,11 @@ export const Container = styled.div`
   width: 100%;
   max-width: 112rem;
 
+  div > img {
+    width: 2rem;
+    height: 2rem;
+  }
+
   & > div:nth-child(1) {
     display: flex;
     align-items: center;

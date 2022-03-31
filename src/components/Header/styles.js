@@ -15,6 +15,11 @@ export const Content = styled.div`
   justify-content: space-between;
   margin: 0 auto;
 
+  & > img {
+    width: 16rem;
+    height: 6rem;
+  }
+
   & > div {
     display: flex;
     align-items: center;

@@ -7,19 +7,20 @@ import { Container } from './styles';
 export function PokemonItem({ pokemon }) {
   const dispatch = useDispatch();
   const favoritePokemons = useSelector((state) => state.pokemons.favoritePokemons);
-  const isSelected = favoritePokemons.includes(pokemon.name);
+  const isSelected = favoritePokemons.includes(pokemon?.name);
 
   return (
     <Container>
-      <img src={pokemon.sprites.other.dream_world.front_default} alt="Pokemon Name" />
+      <img src={pokemon?.sprites.other.dream_world.front_default} alt="Pokemon Name" />
       <small>
         #
-        {pokemon.id}
+        {pokemon?.id}
       </small>
 
       {isSelected ? (
         <button
           onClick={() => dispatch(removeFavPokemon({ fav: pokemon }))}
+          aria-label="remove favorite"
         >
           <AiFillHeart
             size={20}
@@ -29,6 +30,7 @@ export function PokemonItem({ pokemon }) {
       ) : (
         <button
           onClick={() => dispatch(addFavPokemon({ fav: pokemon }))}
+          aria-label="add favorite"
         >
           <AiFillHeart
             size={20}
@@ -37,8 +39,8 @@ export function PokemonItem({ pokemon }) {
       )}
 
       <div>
-        <strong>{pokemon.name}</strong>
-        <img src={`${pokemon.types[0].type.name}.svg`} alt={pokemon.types[0].type.name} />
+        <strong>{pokemon?.name}</strong>
+        {pokemon?.types && <img src={`${pokemon?.types[0].type.name}.svg`} alt={pokemon?.types[0].type.name} />}
       </div>
     </Container>
   );
