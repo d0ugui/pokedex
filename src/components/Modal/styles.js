@@ -92,3 +92,10 @@ export const Stats = styled.div`
     }
   }
 `;
+
+export const ListInfo = styled.li`
+  p {
+    color: ${({ color }) => color && color};
+    font-weight: 700;
+  }
+`;

@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { GrClose } from 'react-icons/gr';
 import {
-  Overlay, Container, Infos, Stats, PokemonImage, Types,
+  Overlay, Container, Infos, Stats, PokemonImage, Types, ListInfo,
 } from './styles';
 import pokeSvg from '../../assets/img-pokeball.png';
 import { removeSelectedPokemon } from '../../features/pokemons';
+
+import powerRange from '../../services/powerRange';
 
 export function Modal() {
   const dispatch = useDispatch();
@@ -35,10 +37,10 @@ export function Modal() {
           <h3>Stats</h3>
           <ul>
             {selectedPokemon.stats.map((stat) => (
-              <li>
+              <ListInfo key={stat.stat.name} color={powerRange(stat.base_stat)}>
                 <strong>{stat.stat.name}</strong>
                 <p>{stat.base_stat}</p>
-              </li>
+              </ListInfo>
             ))}
           </ul>
         </Stats>
