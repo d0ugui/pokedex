@@ -15,7 +15,7 @@ export default createGlobalStyle`
     --rock: #E7F5F2;
     --ghost: #DFE2F1;
     --steel: #DCDBD6;
-    --electric: #CFBE5D33;
+    --electric: #FFF27588;
     --psychic: #EB8C8533;
     --ice: #E5F3F0;
     --dragon: #46699933;

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { GrClose } from 'react-icons/gr';
 import {
-  Overlay, Container, Infos, Stats,
+  Overlay, Container, Infos, Stats, PokemonImage, Types,
 } from './styles';
 import pokeSvg from '../../assets/img-pokeball.png';
 import { removeSelectedPokemon } from '../../features/pokemons';
@@ -14,8 +14,8 @@ export function Modal() {
 
   return ReactDOM.createPortal(
     <Overlay>
-      <Container>
-        <img
+      <Container color={selectedPokemon?.types[0].type.name}>
+        <PokemonImage
           src={selectedPokemon?.sprites.other.dream_world.front_default}
           alt={selectedPokemon.name}
         />
@@ -23,7 +23,13 @@ export function Modal() {
         <GrClose size={24} onClick={() => dispatch(removeSelectedPokemon())} />
         <Infos>
           <h1>{selectedPokemon?.name}</h1>
-          <img src={`${selectedPokemon?.types[0].type.name}.svg`} alt={selectedPokemon?.types[0].type.name} />
+
+          <Types>
+            {selectedPokemon?.types.map((type) => (
+              type.type.name !== 'flying' && <img key={type.type.name} src={`${type.type.name}.svg`} alt={type.type.name} />
+            ))}
+          </Types>
+
         </Infos>
         <Stats>
           <h3>Stats</h3>
