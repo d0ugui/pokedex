@@ -28,7 +28,9 @@ export function Header() {
   return (
     <Container>
       <Content>
-        <img src={logoSvg} alt="Pokemon Logo" />
+        <a href="/">
+          <img src={logoSvg} alt="Pokemon Logo" />
+        </a>
         <div>
           <button onClick={handleFavorites} aria-label="meus favoritos">
             Meus favoritos

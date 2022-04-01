@@ -33,17 +33,13 @@ export const Container = styled.div`
     width: 250px;
   }
 
-  h1 {
-    text-transform: capitalize;
-  }
-
   img.fixed {
     position: absolute;
     top: -5rem;
     left: -10rem;
   }
 
-  svg {
+  & > svg {
     position: absolute;
     top: 2rem;
     right: 2rem;
@@ -56,12 +52,41 @@ export const PokemonImage = styled.img`
   height: 20rem;
 `;
 
+export const Favorite = styled.div`
+  width: 100%;
+  margin-top: 3rem;
+
+  button {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-size: 1.8rem;
+    font-weight: 400;
+
+    svg {
+      cursor: pointer;
+      color: ${({ isSelected }) => (isSelected ? '#E94F37' : '#F18E7E')};
+    }
+  }
+
+`;
+
 export const Infos = styled.div`
   width: 100%;
   margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  h1 {
+    text-transform: capitalize;
+    font-weight: 600;
+  }
 `;
 
 export const Types = styled.div`
@@ -88,6 +113,8 @@ export const Stats = styled.div`
 
       strong {
         text-transform: capitalize;
+        font-weight: 400;
+        color: #3B3B3B;
       }
     }
   }

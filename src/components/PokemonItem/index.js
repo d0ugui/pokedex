@@ -32,7 +32,6 @@ export function PokemonItem({ pokemon }) {
         >
           <AiFillHeart
             size={20}
-            colorIcon="#E94F37"
           />
         </button>
       ) : (

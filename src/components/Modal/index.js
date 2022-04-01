@@ -1,20 +1,30 @@
-import ReactDOM from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { AiFillHeart } from 'react-icons/ai';
 import { GrClose } from 'react-icons/gr';
-import {
-  Overlay, Container, Infos, Stats, PokemonImage, Types, ListInfo,
-} from './styles';
-import pokeSvg from '../../assets/img-pokeball.png';
-import { removeSelectedPokemon } from '../../features/pokemons';
+
+import { removeSelectedPokemon, removeFavPokemon, addFavPokemon } from '../../features/pokemons';
 
 import powerRange from '../../services/powerRange';
+
+import pokeSvg from '../../assets/img-pokeball.png';
+import {
+  Overlay,
+  Container,
+  Infos,
+  Stats,
+  PokemonImage,
+  Types,
+  ListInfo,
+  Favorite,
+} from './styles';
 
 export function Modal() {
   const dispatch = useDispatch();
   const selectedPokemon = useSelector((state) => state.pokemons.selectedPokemon);
+  const favoritePokemons = useSelector((state) => state.pokemons.favoritePokemons);
+  const isSelected = favoritePokemons.includes(selectedPokemon?.name);
 
-  return ReactDOM.createPortal(
+  return (
     <Overlay>
       <Container color={selectedPokemon?.types[0].type.name}>
         <PokemonImage
@@ -23,6 +33,7 @@ export function Modal() {
         />
         <img className="fixed" src={pokeSvg} alt="PokeBola" />
         <GrClose size={24} onClick={() => dispatch(removeSelectedPokemon())} />
+
         <Infos>
           <h1>{selectedPokemon?.name}</h1>
 
@@ -34,7 +45,6 @@ export function Modal() {
 
         </Infos>
         <Stats>
-          <h3>Stats</h3>
           <ul>
             {selectedPokemon.stats.map((stat) => (
               <ListInfo key={stat.stat.name} color={powerRange(stat.base_stat)}>
@@ -44,8 +54,31 @@ export function Modal() {
             ))}
           </ul>
         </Stats>
+
+        <Favorite isSelected={isSelected}>
+          {isSelected ? (
+            <button
+              onClick={() => dispatch(removeFavPokemon({ fav: selectedPokemon }))}
+              aria-label="remove favorite"
+            >
+              Remover dos favoritos
+              <AiFillHeart
+                size={24}
+              />
+            </button>
+          ) : (
+            <button
+              onClick={() => dispatch(addFavPokemon({ fav: selectedPokemon }))}
+              aria-label="add favorite"
+            >
+              Adicionar aos favoritos
+              <AiFillHeart
+                size={24}
+              />
+            </button>
+          )}
+        </Favorite>
       </Container>
-    </Overlay>,
-    document.getElementById('modal-root'),
+    </Overlay>
   );
 }

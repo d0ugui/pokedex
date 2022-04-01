@@ -15,9 +15,11 @@ export const Content = styled.div`
   justify-content: space-between;
   margin: 0 auto;
 
-  & > img {
-    width: 16rem;
-    height: 6rem;
+  a {
+    img {
+      width: 16rem;
+      height: 6rem;
+    }
   }
 
   & > div {
@@ -39,7 +41,6 @@ export const Content = styled.div`
     &:hover {
       color: #E0E0E0;
     }
-
    }
 
     svg {
