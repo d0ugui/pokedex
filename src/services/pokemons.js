@@ -2,10 +2,13 @@ import { api } from './api';
 
 export async function getUniquePokemon(pokemon) {
   try {
-    const { data } = await api.get(`/${pokemon}`);
-    return data;
+    const res = await api.get(`/${pokemon.toLowerCase()}`);
+
+    if (res.status === 200) {
+      return res.data;
+    }
   } catch (error) {
-    console.log(error.response.data);
+    alert('O pokémon não existe!');
   }
 }
 

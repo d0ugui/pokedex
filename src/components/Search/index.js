@@ -5,13 +5,11 @@ import { settingPokemons } from '../../features/pokemons';
 
 import { getPokemons, getUniquePokemon } from '../../services/pokemons';
 import { Container, Content } from './styles';
-import { settingTotalPages } from '../../features/pagination';
 
 export function Search() {
   const dispatch = useDispatch();
+  const { perPage, currentPage } = useSelector((state) => state.pagination);
   const [search, setSearch] = useState('');
-  const perPage = useSelector((state) => state.pagination.perPage);
-  const currentPage = useSelector((state) => state.pagination.currentPage);
 
   async function handleSearch(e) {
     e.preventDefault();
@@ -23,7 +21,10 @@ export function Search() {
     }
 
     const res = Array(await getUniquePokemon(search));
-    dispatch(settingPokemons({ pokemons: res }));
+
+    if (res[0]) {
+      dispatch(settingPokemons({ pokemons: res }));
+    }
   }
 
   return (
