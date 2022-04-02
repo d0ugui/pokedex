@@ -4,7 +4,7 @@ import { AiFillHeart } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeSelectedPokemon, removeFavPokemon, addFavPokemon } from '../../features/pokemons';
 
-import powerRange from '../../services/powerRange';
+import powerRange from '../../utils/powerRange';
 
 import pokeSvg from '../../assets/img-pokeball.png';
 import {

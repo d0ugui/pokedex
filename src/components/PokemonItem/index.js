@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { AiFillHeart } from 'react-icons/ai';
-import { addFavPokemon, removeFavPokemon, selectedPokemon } from '../../features/pokemons';
+import { selectedPokemon } from '../../features/pokemons';
 
 import { Container, PokemonInfos } from './styles';
 
@@ -24,26 +23,6 @@ export function PokemonItem({ pokemon }) {
         #
         {pokemon?.id}
       </small>
-
-      {isSelected ? (
-        <button
-          onClick={() => dispatch(removeFavPokemon({ fav: pokemon }))}
-          aria-label="remove favorite"
-        >
-          <AiFillHeart
-            size={20}
-          />
-        </button>
-      ) : (
-        <button
-          onClick={() => dispatch(addFavPokemon({ fav: pokemon }))}
-          aria-label="add favorite"
-        >
-          <AiFillHeart
-            size={20}
-          />
-        </button>
-      )}
 
       <PokemonInfos>
         <strong>{pokemon?.name}</strong>

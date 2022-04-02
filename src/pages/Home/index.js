@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { settingPokemons, storagePokemons } from '../../features/pokemons';
+import { settingPokemons, storagePokemons, setIsLoading } from '../../features/pokemons';
 import { settingTotalPages } from '../../features/pagination';
 import { getPokemons } from '../../services/pokemons';
 
@@ -9,6 +9,8 @@ import { Header } from '../../components/Header';
 import { PokesList } from '../../components/PokesList';
 import { Search } from '../../components/Search';
 import { Modal } from '../../components/Modal';
+
+import delay from '../../utils/delay';
 
 import { Container } from './styles';
 
@@ -26,10 +28,13 @@ function Home() {
   }, []);
 
   useEffect(async () => {
+    dispatch(setIsLoading(true));
+    await delay();
     const { res, count } = await getPokemons(perPage, perPage * currentPage);
 
     dispatch(settingPokemons({ pokemons: res }));
     dispatch(settingTotalPages({ total: count }));
+    dispatch(setIsLoading(false));
   }, [currentPage]);
 
   return (

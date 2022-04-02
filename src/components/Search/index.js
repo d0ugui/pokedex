@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineSearch } from 'react-icons/ai';
-import { settingPokemons } from '../../features/pokemons';
+import { settingPokemons, setIsLoading } from '../../features/pokemons';
 
 import { getPokemons, getUniquePokemon } from '../../services/pokemons';
+
+import delay from '../../utils/delay';
 import { Container, Content } from './styles';
 
 export function Search() {
@@ -15,16 +17,24 @@ export function Search() {
     e.preventDefault();
 
     if (!search) {
+      dispatch(setIsLoading(true));
+      await delay(1000);
       const { res } = await getPokemons(perPage, perPage * currentPage);
       dispatch(settingPokemons({ pokemons: res }));
+      dispatch(setIsLoading(false));
       return;
     }
+
+    dispatch(setIsLoading(true));
+    await delay(1000);
 
     const res = Array(await getUniquePokemon(search));
 
     if (res[0]) {
       dispatch(settingPokemons({ pokemons: res }));
     }
+
+    dispatch(setIsLoading(false));
   }
 
   return (

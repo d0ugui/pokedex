@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { AiFillHeart } from 'react-icons/ai';
+import { AiFillHeart, AiOutlineAppstore } from 'react-icons/ai';
 import { getFavoritePokemons, getPokemons } from '../../services/pokemons';
 import { setFavorites, settingPokemons } from '../../features/pokemons';
 
@@ -9,11 +9,11 @@ import { Container, Content } from './styles';
 export function Header() {
   const dispatch = useDispatch();
   const { perPage, currentPage } = useSelector((state) => state.pagination);
-  const { favsPokemons, favoriteMode } = useSelector((state) => state.pokemons);
+  const { favoritePokemons, favoriteMode } = useSelector((state) => state.pokemons);
 
   async function handleFavorites() {
     if (!favoriteMode) {
-      const res = await getFavoritePokemons(favsPokemons);
+      const res = await getFavoritePokemons(favoritePokemons);
       dispatch(setFavorites());
       dispatch(settingPokemons({ pokemons: res }));
       return;
@@ -30,12 +30,21 @@ export function Header() {
         <a href="/">
           <img src={logoSvg} alt="Pokemon Logo" />
         </a>
-        <div>
-          <button onClick={handleFavorites} aria-label="meus favoritos">
-            Meus favoritos
-          </button>
-          <AiFillHeart size={20} />
-        </div>
+        {favoriteMode ? (
+          <div>
+            <button onClick={handleFavorites} aria-label="meus favoritos">
+              Todos os pokemons
+            </button>
+            <AiOutlineAppstore size={20} />
+          </div>
+        ) : (
+          <div>
+            <button onClick={handleFavorites} aria-label="meus favoritos">
+              Meus favoritos
+            </button>
+            <AiFillHeart size={20} />
+          </div>
+        )}
       </Content>
     </Container>
   );

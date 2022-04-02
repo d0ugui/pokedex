@@ -11,10 +11,15 @@ export const Container = styled.div`
     margin-top: 3rem;
   }
 
+  h1 {
+    margin-top: 2rem;
+  }
+
   @media (max-width: 1024px) {
     width: 90%;
     margin: 0 2rem;
   }
+
 `;
 
 export const Content = styled.div`

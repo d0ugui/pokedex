@@ -31,6 +31,7 @@ export async function getPokemons(limit, offset) {
 
 export async function getFavoritePokemons(data) {
   try {
+    console.log(data);
     const promises = await data.map(async (pokemon) => (
       getUniquePokemon(pokemon)
     ));

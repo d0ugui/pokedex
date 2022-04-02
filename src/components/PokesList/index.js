@@ -8,30 +8,38 @@ import { Container, Content, Paginate } from './styles';
 
 export function PokesList() {
   const totalPokemons = useSelector((state) => state.pagination.totalPages);
-  const { favoriteMode, favoritePokemons, pokemons } = useSelector((state) => state.pokemons);
+  const {
+    favoriteMode, favoritePokemons, pokemons, isLoading,
+  } = useSelector((state) => state.pokemons);
 
   return (
     <Container>
-      <div>
-        <img src={pokeSvg} alt="Pokebola Icon" />
-        <Paginate>
-          <strong>
-            {favoriteMode ? (
-              favoritePokemons.length
-            ) : (
-              totalPokemons * 12 - 2
-            )}
-            {' '}
-            Pokémons
-          </strong>
-          <Pagination />
-        </Paginate>
-      </div>
-      <Content>
-        {pokemons && pokemons?.map((pokemon) => (
-          <PokemonItem key={Math.random()} pokemon={pokemon} />
-        ))}
-      </Content>
+      {isLoading ? (
+        <h1>Carregando conteúdo....</h1>
+      ) : (
+        <>
+          <div>
+            <img src={pokeSvg} alt="Pokebola Icon" />
+            <Paginate>
+              <strong>
+                {favoriteMode ? (
+                  favoritePokemons.length
+                ) : (
+                  totalPokemons * 12 - 2
+                )}
+                {' '}
+                Pokémons
+              </strong>
+              <Pagination />
+            </Paginate>
+          </div>
+          <Content>
+            {pokemons && pokemons?.map((pokemon) => (
+              <PokemonItem key={Math.random()} pokemon={pokemon} />
+            ))}
+          </Content>
+        </>
+      )}
     </Container>
   );
 }
