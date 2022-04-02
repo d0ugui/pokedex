@@ -5,8 +5,7 @@ import { Container } from './styles';
 
 export function Pagination() {
   const dispatch = useDispatch();
-  const currentPage = useSelector((state) => state.pagination.currentPage);
-  const totalPages = useSelector((state) => state.pagination.totalPages);
+  const { currentPage, totalPages } = useSelector((state) => state.pagination);
   const favoriteMode = useSelector((state) => state.pokemons.favoriteMode);
 
   return (

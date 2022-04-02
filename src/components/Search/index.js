@@ -8,8 +8,8 @@ import { Container, Content } from './styles';
 
 export function Search() {
   const dispatch = useDispatch();
-  const { perPage, currentPage } = useSelector((state) => state.pagination);
   const [search, setSearch] = useState('');
+  const { perPage, currentPage } = useSelector((state) => state.pagination);
 
   async function handleSearch(e) {
     e.preventDefault();

@@ -8,9 +8,7 @@ import { Container, Content, Paginate } from './styles';
 
 export function PokesList() {
   const totalPokemons = useSelector((state) => state.pagination.totalPages);
-  const favoriteMode = useSelector((state) => state.pokemons.favoriteMode);
-  const favoritePokemons = useSelector((state) => state.pokemons.favoritePokemons);
-  const pokemons = useSelector((state) => state.pokemons.pokemons);
+  const { favoriteMode, favoritePokemons, pokemons } = useSelector((state) => state.pokemons);
 
   return (
     <Container>

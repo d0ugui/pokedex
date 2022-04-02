@@ -1,7 +1,7 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { AiFillHeart } from 'react-icons/ai';
 import { GrClose } from 'react-icons/gr';
+import { AiFillHeart } from 'react-icons/ai';
 
+import { useDispatch, useSelector } from 'react-redux';
 import { removeSelectedPokemon, removeFavPokemon, addFavPokemon } from '../../features/pokemons';
 
 import powerRange from '../../services/powerRange';
@@ -20,8 +20,7 @@ import {
 
 export function Modal() {
   const dispatch = useDispatch();
-  const selectedPokemon = useSelector((state) => state.pokemons.selectedPokemon);
-  const favoritePokemons = useSelector((state) => state.pokemons.favoritePokemons);
+  const { selectedPokemon, favoritePokemons } = useSelector((state) => state.pokemons);
   const isSelected = favoritePokemons.includes(selectedPokemon?.name);
 
   return (

@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { settingPokemons, storagePokemons } from '../../features/pokemons';
 import { settingTotalPages } from '../../features/pagination';
@@ -7,14 +8,13 @@ import { getPokemons } from '../../services/pokemons';
 import { Header } from '../../components/Header';
 import { PokesList } from '../../components/PokesList';
 import { Search } from '../../components/Search';
+import { Modal } from '../../components/Modal';
 
 import { Container } from './styles';
-import { Modal } from '../../components/Modal';
 
 function Home() {
   const dispatch = useDispatch();
-  const perPage = useSelector((state) => state.pagination.perPage);
-  const currentPage = useSelector((state) => state.pagination.currentPage);
+  const { perPage, currentPage } = useSelector((state) => state.pagination);
   const selectedPokemon = useSelector((state) => state.pokemons.selectedPokemon);
 
   useLayoutEffect(() => {

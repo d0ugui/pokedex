@@ -1,16 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { AiFillHeart } from 'react-icons/ai';
-import { Container, Content } from './styles';
-import logoSvg from '../../assets/logo.svg';
 import { getFavoritePokemons, getPokemons } from '../../services/pokemons';
 import { setFavorites, settingPokemons } from '../../features/pokemons';
 
+import logoSvg from '../../assets/logo.svg';
+import { Container, Content } from './styles';
+
 export function Header() {
   const dispatch = useDispatch();
-  const favsPokemons = useSelector((state) => state.pokemons.favoritePokemons);
-  const favoriteMode = useSelector((state) => state.pokemons.favoriteMode);
-  const perPage = useSelector((state) => state.pagination.perPage);
-  const currentPage = useSelector((state) => state.pagination.currentPage);
+  const { perPage, currentPage } = useSelector((state) => state.pagination);
+  const { favsPokemons, favoriteMode } = useSelector((state) => state.pokemons);
 
   async function handleFavorites() {
     if (!favoriteMode) {
